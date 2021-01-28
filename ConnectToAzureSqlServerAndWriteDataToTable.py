@@ -2,7 +2,6 @@ from pyspark import SparkContext , SparkConf
 from pyspark.sql import *
 from pyspark.sql.functions import col,lit,to_timestamp,from_utc_timestamp,to_date
 from pyspark.sql.types import DateType,IntegerType,FloatType
-import pyodbc
 import os
 
 appname ='ExampleOfConnectingToAzureSQL'
@@ -23,23 +22,19 @@ server = 'learnsparkazure.database.windows.net'
 database = 'testdb'
 username = 'sqladmin'
 password = 'Pullman@99163'
-# cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
-# cursor = cnxn.cursor()
 
 jdbcUrl = f"jdbc:sqlserver://"+server+":1433;databaseName="+database+""
 print(jdbcUrl)
 jdbcDriver = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
 
 import_file.cache()
-# print(import_file.show(20))
-# print(import_file.printSchema())
+
 if __name__ == "__main__":
 
     Required_Years = ['2016','2017','2018','2019','2020']
     import_file.createOrReplaceTempView("Registered_Companies")
 
     for year in Required_Years:
-        # path = "C:\\Users\\sadhi\\Desktop\\SparkProjects\\Output\\"
         Data_file = Spark.sql("""
             Select 
              Registered_State
@@ -63,4 +58,3 @@ if __name__ == "__main__":
 
         print(Data_file)
 print("Processing Completed")
-# cursor.close()
