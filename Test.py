@@ -11,3 +11,6 @@ Spark = SparkSession(sc)
 
 print(sc)
 print(Spark)
+
+print(sc)
+print(Spark)
