@@ -1,0 +1,7 @@
+
+-- Transfer Files from scp to HDFS
+
+pscp -P 22 PysparkConnection.py asreekanth@gw02.itversity.com:
+
+--SparkSubmit jobs
+spark-submit --master yarn --num-executors 4 --executor-memory 1024MB --conf spark.ui.port=12901 PysparkConnection.py
